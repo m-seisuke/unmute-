@@ -1,5 +1,6 @@
 {
-  "name": "unmute - Creative Agency",
+  "name": "unmute",
   "description": "A sophisticated landing page for unmute, a design agency focused on unmuting potential through creative education and NPO partnership.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": []
 }

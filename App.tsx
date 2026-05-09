@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,13 +8,10 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Experience from './components/Experience';
 import CustomCursor from './components/CustomCursor';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-// Register GSAP plugin
-gsap.registerPlugin(ScrollTrigger);
+import LoadingScreen from './components/LoadingScreen';
 
 const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     // Global GSAP animations for section transitions could go here
@@ -21,10 +19,14 @@ const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
+      <AnimatePresence mode="wait">
+        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
+
       {/* Custom Cursor & Noise Trail */}
       <CustomCursor />
 
-      {/* 3D Background */}
+      {/* 3D Background - Rendered behind loading screen so it's ready when revealed */}
       <Experience />
       
       <Navbar />
